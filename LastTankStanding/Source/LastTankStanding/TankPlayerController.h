@@ -11,10 +11,15 @@ UCLASS()
 class LASTTANKSTANDING_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
 public:
-	void BeginPlay() override;
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 
 	ATank* GetControlledTank() const;
 
+	void AimTowardsCrosshair();
+
+private:
+	bool GetSightRayHitLocation(FVector& HitLocation) const;
 };

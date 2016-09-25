@@ -13,7 +13,8 @@ class LASTTANKSTANDING_API ATankAIController : public AAIController
 	GENERATED_BODY()
 	
 public:
-	void BeginPlay() override;
+	virtual void BeginPlay() override;
 
 	ATank* GetControlledTank() const;
+	ATank* GetPlayerTank() const;
 };
