@@ -6,6 +6,8 @@
 #include "TankAimingComponent.generated.h"
 
 
+class UTankBarrel;
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class LASTTANKSTANDING_API UTankAimingComponent : public UActorComponent
 {
@@ -21,12 +23,15 @@ public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
+	// Sets the barrel reference, so as to use it as a projectile's start point.
+	void SetBarrelReference(UTankBarrel* Barrel);
+
 	// Aim at the specified hit location.
 	void AimAt(FVector HitLocation, float ProjectileSpeed);
 
-	// Sets the barrel reference, so as to use it as a projectile's start point.
-	void SetBarrelReference(UStaticMeshComponent* Barrel);
-
 private:
-	UStaticMeshComponent* TankBarrel = nullptr;
+	UTankBarrel* TankBarrel = nullptr;
+
+	// Moves the barrel in the required aim direction.
+	void MoveBarrel(FVector AimDirection);
 };

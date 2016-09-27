@@ -2,6 +2,8 @@
 
 #include "LastTankStanding.h"
 #include "Tank.h"
+#include "TankAimingComponent.h"
+#include "TankBarrel.h"
 
 
 // Sets default values
@@ -23,7 +25,6 @@ void ATank::BeginPlay()
 void ATank::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
-
 }
 
 // Called to bind functionality to input
@@ -38,7 +39,7 @@ void ATank::AimAt(FVector HitLocation)
 	AimingComponent->AimAt(HitLocation, ProjectileSpeed);
 }
 
-void ATank::SetBarrelReference(UStaticMeshComponent* Barrel)
+void ATank::SetBarrelReference(UTankBarrel* Barrel)
 {
 	if (AimingComponent)
 	{

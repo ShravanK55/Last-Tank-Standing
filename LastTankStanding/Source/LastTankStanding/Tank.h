@@ -2,9 +2,12 @@
 
 #pragma once
 
-#include "TankAimingComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
+
+
+class UTankBarrel;
+class UTankAimingComponent;
 
 UCLASS()
 class LASTTANKSTANDING_API ATank : public APawn
@@ -20,7 +23,7 @@ public:
 
 	// Sets the barrel reference to the tank's aiming component.
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UStaticMeshComponent* Barrel);
+	void SetBarrelReference(UTankBarrel* Barrel);
 
 protected:
 	UTankAimingComponent* AimingComponent = nullptr;
