@@ -22,5 +22,11 @@ public:
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
 	// Aim at the specified hit location.
-	void AimAt(FVector HitLocation);
+	void AimAt(FVector HitLocation, float ProjectileSpeed);
+
+	// Sets the barrel reference, so as to use it as a projectile's start point.
+	void SetBarrelReference(UStaticMeshComponent* Barrel);
+
+private:
+	UStaticMeshComponent* TankBarrel = nullptr;
 };
