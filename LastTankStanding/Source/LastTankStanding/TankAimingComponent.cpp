@@ -3,6 +3,7 @@
 #include "LastTankStanding.h"
 #include "TankAimingComponent.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 
 
 // Sets default values for this component's properties
@@ -33,6 +34,11 @@ void UTankAimingComponent::SetBarrelReference(UTankBarrel* Barrel)
 	TankBarrel = Barrel;
 }
 
+void UTankAimingComponent::SetTurretReference(UTankTurret* Turret)
+{
+	TankTurret = Turret;
+}
+
 void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileSpeed)
 {
 	FString OwnerName = GetOwner()->GetName();
@@ -41,6 +47,12 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileSpeed)
 	if (!TankBarrel)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Barrel not attached to Tank Aiming Component."))
+		return;
+	}
+
+	if (!TankTurret)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Turret not attached to Tank Aiming Component."))
 		return;
 	}
 
@@ -73,5 +85,6 @@ void UTankAimingComponent::MoveBarrel(FVector AimDirection)
 
 	UE_LOG(LogTemp, Warning, TEXT("%s aims towards %s."), *GetOwner()->GetName(), *AimDirectionRotator.ToString())
 
-	TankBarrel->Elevate(5);
+	TankBarrel->Elevate(DeltaRotation.Pitch);
+	TankTurret->Rotate(DeltaRotation.Yaw);
 }

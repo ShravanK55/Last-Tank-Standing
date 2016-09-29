@@ -7,6 +7,7 @@
 
 
 class UTankBarrel;
+class UTankTurret;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class LASTTANKSTANDING_API UTankAimingComponent : public UActorComponent
@@ -26,11 +27,15 @@ public:
 	// Sets the barrel reference, so as to use it as a projectile's start point.
 	void SetBarrelReference(UTankBarrel* Barrel);
 
+	// Sets the turret reference in order to turn it in accordance with the player's aim.
+	void SetTurretReference(UTankTurret* Turret);
+
 	// Aim at the specified hit location.
 	void AimAt(FVector HitLocation, float ProjectileSpeed);
 
 private:
 	UTankBarrel* TankBarrel = nullptr;
+	UTankTurret* TankTurret = nullptr;
 
 	// Moves the barrel in the required aim direction.
 	void MoveBarrel(FVector AimDirection);

@@ -25,6 +25,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetBarrelReference(UTankBarrel* Barrel);
 
+	// Sets the turret reference to the tank's aiming component.
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetTurretReference(UTankTurret* Turret);
+
 protected:
 	UTankAimingComponent* AimingComponent = nullptr;
 

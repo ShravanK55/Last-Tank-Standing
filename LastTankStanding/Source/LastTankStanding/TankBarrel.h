@@ -12,11 +12,11 @@ class LASTTANKSTANDING_API UTankBarrel : public UStaticMeshComponent
 	GENERATED_BODY()
 	
 public:
-	void Elevate(float RelativeSpeed);
+	void Elevate(float DeltaRotation);
 
 private:
 	UPROPERTY(EditAnywhere, Category = Setup)
-	float MaxDegreesPerSecond = 20.0f;
+	float RelativeRotationSpeed = 2.0f;
 
 	UPROPERTY(EditAnywhere, Category = Setup)
 	float MaxElevation = 40.0f;
