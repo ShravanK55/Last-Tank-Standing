@@ -36,12 +36,18 @@ void ATank::AimAt(FVector HitLocation)
 
 void ATank::Fire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("%s fires a shell!"), *GetName())
+	bool IsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeSecs;
 
-	FVector ProjectileSpawnPosition = TankBarrel->GetSocketLocation("Projectile");
-	FRotator ProjectileSpawnRotation = TankBarrel->GetSocketRotation("Projectile");
-	AProjectile* SpawnedProjectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, ProjectileSpawnPosition, ProjectileSpawnRotation);
-	SpawnedProjectile->LaunchProjectile(ProjectileSpeed);
+	if (IsReloaded && TankBarrel)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("%s fires a shell!"), *GetName())
+		AProjectile* SpawnedProjectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
+																			 TankBarrel->GetSocketLocation("Projectile"),
+																			 TankBarrel->GetSocketRotation("Projectile")
+																			);
+		SpawnedProjectile->LaunchProjectile(ProjectileSpeed);
+		LastFireTime = FPlatformTime::Seconds();
+	}
 }
 
 void ATank::SetBarrelReference(UTankBarrel* Barrel)

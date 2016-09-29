@@ -23,7 +23,7 @@ public:
 	void AimAt(FVector HitLocation);
 
 	// Fires a projectile.
-	UFUNCTION(BlueprintCallable, Category = Gameplay)
+	UFUNCTION(BlueprintCallable, Category = Firing)
 	void Fire();
 
 	// Sets the barrel reference to the tank's aiming component.
@@ -42,6 +42,11 @@ private:
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UTankBarrel* TankBarrel = nullptr;
+
+	UPROPERTY(EditAnywhere, Category = Firing)
+	float ReloadTimeSecs = 3.0f;
+
+	double LastFireTime = 0.0f;
 
 	// Sets default values for this pawn's properties
 	ATank();

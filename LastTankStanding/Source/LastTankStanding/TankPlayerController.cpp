@@ -8,16 +8,6 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-
-	ATank* ControlledTank = GetControlledTank();
-	if (ControlledTank != nullptr)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("TankPlayerController possessing %s."), *(ControlledTank->GetName()))
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("TankPlayerController is not possessing anything."), *(ControlledTank->GetName()))
-	}
 }
 
 void ATankPlayerController::Tick(float DeltaSeconds)
@@ -40,8 +30,6 @@ void ATankPlayerController::AimTowardsCrosshair()
 	if (GetSightRayHitLocation(HitLocation)) // This method will perform a line trace.
 	{
 		GetControlledTank()->AimAt(HitLocation);
-
-		// TODO: Make the tank aim at the point.
 	}
 }
 
