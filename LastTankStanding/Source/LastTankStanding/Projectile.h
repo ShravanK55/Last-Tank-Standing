@@ -10,6 +10,9 @@ class LASTTANKSTANDING_API AProjectile : public AActor
 {
 	GENERATED_BODY()
 
+public:
+	void LaunchProjectile(float Speed);
+
 protected:
 	UProjectileMovementComponent* ProjectileMovementComponent = nullptr;
 

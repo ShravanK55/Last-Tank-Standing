@@ -40,7 +40,8 @@ void ATank::Fire()
 
 	FVector ProjectileSpawnPosition = TankBarrel->GetSocketLocation("Projectile");
 	FRotator ProjectileSpawnRotation = TankBarrel->GetSocketRotation("Projectile");
-	GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, ProjectileSpawnPosition, ProjectileSpawnRotation);
+	AProjectile* SpawnedProjectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, ProjectileSpawnPosition, ProjectileSpawnRotation);
+	SpawnedProjectile->LaunchProjectile(ProjectileSpeed);
 }
 
 void ATank::SetBarrelReference(UTankBarrel* Barrel)
