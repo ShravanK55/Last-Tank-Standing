@@ -21,6 +21,10 @@ public:
 	// Makes the tank aim at the line traced hit location.
 	void AimAt(FVector HitLocation);
 
+	// Fires a projectile.
+	UFUNCTION(BlueprintCallable, Category = Gameplay)
+	void Fire();
+
 	// Sets the barrel reference to the tank's aiming component.
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetBarrelReference(UTankBarrel* Barrel);

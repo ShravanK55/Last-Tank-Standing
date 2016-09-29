@@ -33,6 +33,11 @@ void ATank::AimAt(FVector HitLocation)
 	AimingComponent->AimAt(HitLocation, ProjectileSpeed);
 }
 
+void ATank::Fire()
+{
+	UE_LOG(LogTemp, Warning, TEXT("%s fires a shell!"), *GetName())
+}
+
 void ATank::SetBarrelReference(UTankBarrel* Barrel)
 {
 	if (AimingComponent)

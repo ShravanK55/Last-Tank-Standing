@@ -31,11 +31,13 @@ void UTankAimingComponent::TickComponent( float DeltaTime, ELevelTick TickType, 
 
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* Barrel)
 {
+	if (!Barrel) { return; }
 	TankBarrel = Barrel;
 }
 
 void UTankAimingComponent::SetTurretReference(UTankTurret* Turret)
 {
+	if (!Turret) { return; }
 	TankTurret = Turret;
 }
 
@@ -79,12 +81,12 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileSpeed)
 
 void UTankAimingComponent::MoveBarrel(FVector AimDirection)
 {
-	FRotator BarrelRotator = TankBarrel->GetForwardVector().Rotation();
 	FRotator AimDirectionRotator = AimDirection.Rotation();
-	FRotator DeltaRotation = AimDirectionRotator - BarrelRotator;
+	FRotator TurretRotator = TankTurret->GetForwardVector().Rotation();
+	FRotator BarrelRotator = TankBarrel->GetForwardVector().Rotation();
+	FRotator DeltaRotationTurret = AimDirectionRotator - TurretRotator;
+	FRotator DeltaRotationBarrel = AimDirectionRotator - BarrelRotator;
 
-	UE_LOG(LogTemp, Warning, TEXT("%s aims towards %s."), *GetOwner()->GetName(), *AimDirectionRotator.ToString())
-
-	TankBarrel->Elevate(DeltaRotation.Pitch);
-	TankTurret->Rotate(DeltaRotation.Yaw);
+	TankTurret->Rotate(DeltaRotationTurret.Yaw);
+	TankBarrel->Elevate(DeltaRotationBarrel.Pitch);
 }
