@@ -4,6 +4,7 @@
 #include "Tank.h"
 #include "TankAimingComponent.h"
 #include "TankBarrel.h"
+#include "Projectile.h"
 
 
 // Sets default values
@@ -36,6 +37,10 @@ void ATank::AimAt(FVector HitLocation)
 void ATank::Fire()
 {
 	UE_LOG(LogTemp, Warning, TEXT("%s fires a shell!"), *GetName())
+
+	FVector ProjectileSpawnPosition = TankBarrel->GetSocketLocation("Projectile");
+	FRotator ProjectileSpawnRotation = TankBarrel->GetSocketRotation("Projectile");
+	GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, ProjectileSpawnPosition, ProjectileSpawnRotation);
 }
 
 void ATank::SetBarrelReference(UTankBarrel* Barrel)
@@ -44,6 +49,8 @@ void ATank::SetBarrelReference(UTankBarrel* Barrel)
 	{
 		AimingComponent->SetBarrelReference(Barrel);
 	}
+
+	TankBarrel = Barrel;
 }
 
 void ATank::SetTurretReference(UTankTurret* Turret)

@@ -9,8 +9,11 @@ UCLASS()
 class LASTTANKSTANDING_API AProjectile : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+protected:
+	UProjectileMovementComponent* ProjectileMovementComponent = nullptr;
+
+private:	
 	// Sets default values for this actor's properties
 	AProjectile();
 
@@ -19,7 +22,4 @@ public:
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
-
-	
-	
 };

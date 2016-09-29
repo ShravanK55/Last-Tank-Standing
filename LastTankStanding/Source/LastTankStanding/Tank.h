@@ -8,6 +8,7 @@
 
 class UTankBarrel;
 class UTankAimingComponent;
+class AProjectile;
 
 UCLASS()
 class LASTTANKSTANDING_API ATank : public APawn
@@ -37,6 +38,11 @@ protected:
 	UTankAimingComponent* AimingComponent = nullptr;
 
 private:
+	UPROPERTY(EditAnywhere, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	UTankBarrel* TankBarrel = nullptr;
+
 	// Sets default values for this pawn's properties
 	ATank();
 
