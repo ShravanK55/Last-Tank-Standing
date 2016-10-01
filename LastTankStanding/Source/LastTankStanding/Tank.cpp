@@ -40,7 +40,6 @@ void ATank::Fire()
 
 	if (IsReloaded && TankBarrel)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s fires a shell!"), *GetName())
 		AProjectile* SpawnedProjectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
 																			 TankBarrel->GetSocketLocation("Projectile"),
 																			 TankBarrel->GetSocketRotation("Projectile")
