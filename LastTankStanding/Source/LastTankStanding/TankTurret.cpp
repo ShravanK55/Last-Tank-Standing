@@ -4,9 +4,10 @@
 #include "TankTurret.h"
 
 
-void UTankTurret::Rotate(float DeltaRotation)
+void UTankTurret::Rotate(float RelativeSpeed)
 {
-	float NewRotation = RelativeRotation.Yaw + (DeltaRotation * RelativeRotationSpeed * GetWorld()->DeltaTimeSeconds);
+	RelativeSpeed = FMath::Clamp<float>(RelativeSpeed, -1, 1);
+	float NewRotation = RelativeRotation.Yaw + (RelativeSpeed * RotationSpeed * GetWorld()->DeltaTimeSeconds);
 
 	SetRelativeRotation(FRotator(0.0f, NewRotation, 0.0f));
 }

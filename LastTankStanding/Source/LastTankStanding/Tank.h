@@ -16,7 +16,7 @@ class LASTTANKSTANDING_API ATank : public APawn
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float ProjectileSpeed = 100000.0f;
 
 	// Makes the tank aim at the line traced hit location.
@@ -38,12 +38,12 @@ protected:
 	UTankAimingComponent* AimingComponent = nullptr;
 
 private:
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UTankBarrel* TankBarrel = nullptr;
 
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float ReloadTimeSecs = 3.0f;
 
 	double LastFireTime = 0.0f;

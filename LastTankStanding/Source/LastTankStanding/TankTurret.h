@@ -12,9 +12,9 @@ class LASTTANKSTANDING_API UTankTurret : public UStaticMeshComponent
 	GENERATED_BODY()
 	
 public:
-	void Rotate(float DeltaRotation);
+	void Rotate(float RelativeSpeed);
 	
 private:
-	UPROPERTY(EditAnywhere, Category = Setup)
-	float RelativeRotationSpeed = 2.0f;
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	float RotationSpeed = 20.0f;
 };

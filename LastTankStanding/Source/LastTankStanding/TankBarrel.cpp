@@ -4,9 +4,10 @@
 #include "TankBarrel.h"
 
 
-void UTankBarrel::Elevate(float DeltaRotation)
+void UTankBarrel::Elevate(float RelativeSpeed)
 {
-	float NewElevation = RelativeRotation.Pitch + (DeltaRotation * RelativeRotationSpeed * GetWorld()->DeltaTimeSeconds);
+	RelativeSpeed = FMath::Clamp<float>(RelativeSpeed, -1, 1);
+	float NewElevation = RelativeRotation.Pitch + (RelativeSpeed * RotationSpeed * GetWorld()->DeltaTimeSeconds);
 
 	NewElevation = FMath::Clamp<float>(NewElevation, MinElevation, MaxElevation);
 

@@ -44,7 +44,7 @@ void UTankAimingComponent::SetTurretReference(UTankTurret* Turret)
 void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileSpeed)
 {
 	FString OwnerName = GetOwner()->GetName();
-	FVector ProjectileStartLocation = FVector(), ProjectileVelocity = FVector();
+	FVector ProjectileVelocity = FVector();
 
 	if (!TankBarrel)
 	{
@@ -63,7 +63,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileSpeed)
 	bool HaveAimSolution = UGameplayStatics::SuggestProjectileVelocity(
 								this,
 								ProjectileVelocity,
-								ProjectileStartLocation,
+								ProjectileStartPosition,
 								HitLocation,
 								ProjectileSpeed,
 								false,
