@@ -7,33 +7,28 @@
 
 void UTankMovementComponent::Initialize(UTankTrack* LeftTrack, UTankTrack* RightTrack)
 {
-	if (!LeftTrack || !RightTrack) { return; }
 	this->LeftTrack = LeftTrack;
 	this->RightTrack = RightTrack;
 }
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
-	if (LeftTrack && RightTrack)
+	if (!LeftTrack || !RightTrack)
 	{
-		LeftTrack->SetThrottle(Throw);
-		RightTrack->SetThrottle(Throw);
+		UE_LOG(LogTemp, Warning, TEXT("One/more tracks not attached to the movement component!"))
+		return;
 	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Tracks are not attached to the movement component!"))
-	}
+	LeftTrack->SetThrottle(Throw);
+	RightTrack->SetThrottle(Throw);
 }
 
 void UTankMovementComponent::IntendTurn(float Throw)
 {
-	if (LeftTrack && RightTrack)
+	if (!LeftTrack || !RightTrack)
 	{
-		LeftTrack->SetThrottle(Throw);
-		RightTrack->SetThrottle(-Throw);
+		UE_LOG(LogTemp, Warning, TEXT("One/more tracks not attached to the movement component!"))
+		return;
 	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Tracks are not attached to the movement component!"))
-	}
+	LeftTrack->SetThrottle(Throw);
+	RightTrack->SetThrottle(-Throw);
 }

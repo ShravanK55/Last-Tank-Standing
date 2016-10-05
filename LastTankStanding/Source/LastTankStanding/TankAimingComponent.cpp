@@ -31,27 +31,20 @@ void UTankAimingComponent::TickComponent( float DeltaTime, ELevelTick TickType, 
 
 void UTankAimingComponent::Initialize(UTankBarrel* Barrel, UTankTurret* Turret)
 {
-	if (!Barrel || !Turret) { return; }
 	TankBarrel = Barrel;
 	TankTurret = Turret;
 }
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileSpeed)
 {
+	if (!TankBarrel || !TankTurret)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Barrel and/or turet not attached to Tank Aiming Component."))
+		return;
+	}
+
 	FString OwnerName = GetOwner()->GetName();
 	FVector ProjectileVelocity = FVector();
-
-	if (!TankBarrel)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Barrel not attached to Tank Aiming Component."))
-		return;
-	}
-
-	if (!TankTurret)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Turret not attached to Tank Aiming Component."))
-		return;
-	}
 
 	FVector ProjectileStartPosition = TankBarrel->GetSocketLocation(FName("Projectile"));
 
