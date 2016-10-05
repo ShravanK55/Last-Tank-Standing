@@ -5,15 +5,16 @@
 #include "GameFramework/NavMovementComponent.h"
 #include "TankMovementComponent.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class LASTTANKSTANDING_API UTankMovementComponent : public UNavMovementComponent
 {
 	GENERATED_BODY()
+
+public:
+	UFUNCTION(BlueprintCallable, Category = Movement)
+	void IntendMoveForward(float Throw);
 	
-	
-	
-	
+private:
+
 };

@@ -8,6 +8,7 @@
 
 class UTankBarrel;
 class UTankAimingComponent;
+class UTankMovementComponent;
 class AProjectile;
 
 UCLASS()
@@ -36,6 +37,9 @@ public:
 
 protected:
 	UTankAimingComponent* AimingComponent = nullptr;
+
+	UPROPERTY(BlueprintReadOnly, Category = Components)
+	UTankMovementComponent* MovementComponent = nullptr;
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
