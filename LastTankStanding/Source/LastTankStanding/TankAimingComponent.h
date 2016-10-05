@@ -24,11 +24,8 @@ public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
-	// Sets the barrel reference, so as to use it as a projectile's start point.
-	void SetBarrelReference(UTankBarrel* Barrel);
-
-	// Sets the turret reference in order to turn it in accordance with the player's aim.
-	void SetTurretReference(UTankTurret* Turret);
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void Initialize(UTankBarrel* Barrel, UTankTurret* Turret);
 
 	// Aim at the specified hit location.
 	void AimAt(FVector HitLocation, float ProjectileSpeed);

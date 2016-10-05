@@ -29,15 +29,10 @@ void UTankAimingComponent::TickComponent( float DeltaTime, ELevelTick TickType, 
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 }
 
-void UTankAimingComponent::SetBarrelReference(UTankBarrel* Barrel)
+void UTankAimingComponent::Initialize(UTankBarrel* Barrel, UTankTurret* Turret)
 {
-	if (!Barrel) { return; }
+	if (!Barrel || !Turret) { return; }
 	TankBarrel = Barrel;
-}
-
-void UTankAimingComponent::SetTurretReference(UTankTurret* Turret)
-{
-	if (!Turret) { return; }
 	TankTurret = Turret;
 }
 

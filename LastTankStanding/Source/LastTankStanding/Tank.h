@@ -20,6 +20,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float ProjectileSpeed = 100000.0f;
 
+	// Sets the barrel reference.
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetBarrelReference(UTankBarrel* Barrel);
+
 	// Makes the tank aim at the line traced hit location.
 	void AimAt(FVector HitLocation);
 
@@ -27,15 +31,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Firing)
 	void Fire();
 
-	// Sets the barrel reference to the tank's aiming component.
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UTankBarrel* Barrel);
-
-	// Sets the turret reference to the tank's aiming component.
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetTurretReference(UTankTurret* Turret);
-
 protected:
+	UPROPERTY(BlueprintReadOnly, Category = Components)
 	UTankAimingComponent* AimingComponent = nullptr;
 
 	UPROPERTY(BlueprintReadOnly, Category = Components)

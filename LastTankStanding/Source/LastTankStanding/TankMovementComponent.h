@@ -6,7 +6,9 @@
 #include "TankMovementComponent.generated.h"
 
 
-UCLASS()
+class UTankTrack;
+
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class LASTTANKSTANDING_API UTankMovementComponent : public UNavMovementComponent
 {
 	GENERATED_BODY()
@@ -15,6 +17,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Movement)
 	void IntendMoveForward(float Throw);
 	
-private:
+	UFUNCTION(BlueprintCallable, Category = Movement)
+	void IntendTurn(float Throw);
 
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void Initialize(UTankTrack* LeftTrack, UTankTrack* RightTrack);
+
+private:
+	UTankTrack* LeftTrack = nullptr;
+	UTankTrack* RightTrack = nullptr;
 };
