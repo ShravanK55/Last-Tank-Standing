@@ -6,10 +6,7 @@
 #include "Tank.generated.h"
 
 
-class UTankBarrel;
 class UTankAimingComponent;
-class UTankMovementComponent;
-class AProjectile;
 
 UCLASS()
 class LASTTANKSTANDING_API ATank : public APawn

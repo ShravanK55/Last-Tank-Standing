@@ -13,10 +13,10 @@ class LASTTANKSTANDING_API UTankTrack : public UStaticMeshComponent
 	
 public:
 	// Max force per track in newtons.
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	float TrackMaxDrivingForce = 400000.0f; // Assume a tank with a mass 40000 kg, with 10 m/s^2 acceleration
 
-	UFUNCTION(BlueprintCallable, Category = Movement)
+	UFUNCTION(BlueprintCallable, Category = "Movement")
 	void SetThrottle(float Throttle);
 
 private:

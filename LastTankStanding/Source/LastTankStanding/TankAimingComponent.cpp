@@ -16,13 +16,11 @@ UTankAimingComponent::UTankAimingComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 }
 
-
 // Called when the game starts
 void UTankAimingComponent::BeginPlay()
 {
 	Super::BeginPlay();
 }
-
 
 // Called every frame
 void UTankAimingComponent::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
@@ -86,6 +84,12 @@ void UTankAimingComponent::Fire()
 
 void UTankAimingComponent::MoveBarrel(FVector AimDirection)
 {
+	if (!TankTurret || !TankBarrel)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Barrel and/or turet not attached to Tank Aiming Component."))
+		return;
+	}
+
 	FRotator AimDirectionRotator = AimDirection.Rotation();
 	FRotator TurretRotator = TankTurret->GetForwardVector().Rotation();
 	FRotator BarrelRotator = TankBarrel->GetForwardVector().Rotation();
