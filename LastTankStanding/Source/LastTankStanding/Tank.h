@@ -17,38 +17,17 @@ class LASTTANKSTANDING_API ATank : public APawn
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float ProjectileSpeed = 100000.0f;
-
-	// Sets the barrel reference.
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UTankBarrel* Barrel);
-
 	// Makes the tank aim at the line traced hit location.
 	void AimAt(FVector HitLocation);
 
-	// Fires a projectile.
-	UFUNCTION(BlueprintCallable, Category = Firing)
+	// Fires a projectile from the tank's barrel.
 	void Fire();
 
 protected:
-	UPROPERTY(BlueprintReadOnly, Category = Components)
+	UPROPERTY(BlueprintReadWrite, Category = "Components")
 	UTankAimingComponent* AimingComponent = nullptr;
 
-	UPROPERTY(BlueprintReadOnly, Category = Components)
-	UTankMovementComponent* MovementComponent = nullptr;
-
 private:
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
-	TSubclassOf<AProjectile> ProjectileBlueprint;
-
-	UTankBarrel* TankBarrel = nullptr;
-
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float ReloadTimeSecs = 3.0f;
-
-	double LastFireTime = 0.0f;
-
 	// Sets default values for this pawn's properties
 	ATank();
 
