@@ -7,6 +7,7 @@
 
 
 class ATank;
+class UTankAimingComponent;
 
 UCLASS()
 class LASTTANKSTANDING_API ATankPlayerController : public APlayerController
@@ -30,6 +31,9 @@ public:
 protected:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	ATank* GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+	void FoundAimingComponent(UTankAimingComponent* AimingCompRef);
 
 private:
 	bool GetSightRayHitLocation(FVector& HitLocation) const;
