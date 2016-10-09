@@ -36,6 +36,8 @@ protected:
 	void FoundAimingComponent(UTankAimingComponent* AimingCompRef);
 
 private:
+	UTankAimingComponent* AimingComponent = nullptr;
+
 	bool GetSightRayHitLocation(FVector& HitLocation) const;
 	bool GetLookDirection(FVector& LookDirection, FVector2D ScreenLocation) const;
 	bool GetLookVectorHitLocation(FVector& HitLocation, FVector LookDirection) const;

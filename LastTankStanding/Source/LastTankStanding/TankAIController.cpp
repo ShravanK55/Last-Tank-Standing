@@ -3,11 +3,22 @@
 #include "LastTankStanding.h"
 #include "TankAIController.h"
 #include "Tank.h"
+#include "TankAimingComponent.h"
 
 
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
+
+	UTankAimingComponent* TankAimingComponent = Cast<ATank>(GetPawn())->FindComponentByClass<UTankAimingComponent>();
+	if (TankAimingComponent)
+	{
+		AimingComponent = TankAimingComponent;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Aiming component is still not created in the tank!"))
+	}
 }
 
 void ATankAIController::Tick(float DeltaSeconds)
@@ -16,11 +27,11 @@ void ATankAIController::Tick(float DeltaSeconds)
 	if (!ensure(ControlledTank)) { return; }
 
 	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
-	if (PlayerTank)
+	if (PlayerTank && ensure(AimingComponent))
 	{
 		MoveToActor(PlayerTank, AcceptanceRadius);
 
-		ControlledTank->AimAt(PlayerTank->GetActorLocation());
-		ControlledTank->Fire();
+		AimingComponent->AimAt(PlayerTank->GetActorLocation());
+		AimingComponent->Fire();
 	}
 }

@@ -7,6 +7,7 @@
 
 
 class ATank;
+class UTankAimingComponent;
 
 UCLASS()
 class LASTTANKSTANDING_API ATankAIController : public AAIController
@@ -18,6 +19,8 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 private:
+	UTankAimingComponent* AimingComponent = nullptr;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	float AcceptanceRadius = 3000.0f;
 };

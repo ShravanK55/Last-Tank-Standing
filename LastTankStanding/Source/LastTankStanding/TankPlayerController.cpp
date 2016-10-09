@@ -9,10 +9,12 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	UTankAimingComponent* AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
-	if (AimingComponent)
+
+	UTankAimingComponent* TankAimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+	if (TankAimingComponent)
 	{
-		FoundAimingComponent(AimingComponent);
+		AimingComponent = TankAimingComponent;
+		FoundAimingComponent(TankAimingComponent);
 	}
 	else
 	{
@@ -37,9 +39,9 @@ void ATankPlayerController::AimTowardsCrosshair()
 	if (!ensure(GetControlledTank())) { return; }
 
 	FVector HitLocation;
-	if (GetSightRayHitLocation(HitLocation)) // This method will perform a line trace.
+	if (GetSightRayHitLocation(HitLocation) && ensure(AimingComponent)) // This method will perform a line trace.
 	{
-		GetControlledTank()->AimAt(HitLocation);
+		AimingComponent->AimAt(HitLocation);
 	}
 }
 

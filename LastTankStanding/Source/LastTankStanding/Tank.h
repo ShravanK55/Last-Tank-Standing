@@ -6,23 +6,10 @@
 #include "Tank.generated.h"
 
 
-class UTankAimingComponent;
-
 UCLASS()
 class LASTTANKSTANDING_API ATank : public APawn
 {
 	GENERATED_BODY()
-
-public:
-	// Makes the tank aim at the line traced hit location.
-	void AimAt(FVector HitLocation);
-
-	// Fires a projectile from the tank's barrel.
-	void Fire();
-
-protected:
-	UPROPERTY(BlueprintReadWrite, Category = "Components")
-	UTankAimingComponent* AimingComponent = nullptr;
 
 private:
 	// Sets default values for this pawn's properties

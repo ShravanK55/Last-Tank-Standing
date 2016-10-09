@@ -2,7 +2,6 @@
 
 #include "LastTankStanding.h"
 #include "Tank.h"
-#include "TankAimingComponent.h"
 
 
 // Sets default values
@@ -22,20 +21,4 @@ void ATank::BeginPlay()
 void ATank::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
-}
-
-void ATank::AimAt(FVector HitLocation)
-{
-	if (AimingComponent)
-	{
-		AimingComponent->AimAt(HitLocation);
-	}
-}
-
-void ATank::Fire()
-{
-	if (AimingComponent)
-	{
-		AimingComponent->Fire();
-	}
 }
