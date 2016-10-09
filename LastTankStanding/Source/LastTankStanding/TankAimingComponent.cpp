@@ -36,7 +36,7 @@ void UTankAimingComponent::Initialize(UTankBarrel* Barrel, UTankTurret* Turret)
 
 void UTankAimingComponent::AimAt(FVector HitLocation)
 {
-	if (!TankBarrel || !TankTurret)
+	if (!ensure(TankBarrel && TankTurret))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Barrel and/or turet not attached to Tank Aiming Component."))
 		return;
@@ -84,7 +84,7 @@ void UTankAimingComponent::Fire()
 
 void UTankAimingComponent::MoveBarrel(FVector AimDirection)
 {
-	if (!TankTurret || !TankBarrel)
+	if (!ensure(TankTurret && TankBarrel))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Barrel and/or turet not attached to Tank Aiming Component."))
 		return;

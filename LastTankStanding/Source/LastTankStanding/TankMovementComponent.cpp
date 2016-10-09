@@ -13,7 +13,7 @@ void UTankMovementComponent::Initialize(UTankTrack* LeftTrack, UTankTrack* Right
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
-	if (!LeftTrack || !RightTrack)
+	if (!ensure(LeftTrack && RightTrack))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("One/more tracks not attached to the movement component!"))
 		return;
@@ -24,7 +24,7 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 
 void UTankMovementComponent::IntendTurnRight(float Throw)
 {
-	if (!LeftTrack || !RightTrack)
+	if (!ensure(LeftTrack && RightTrack))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("One/more tracks not attached to the movement component!"))
 		return;
