@@ -10,7 +10,7 @@ void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UTankAimingComponent* TankAimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+	UTankAimingComponent* TankAimingComponent = Cast<ATank>(GetPawn())->FindComponentByClass<UTankAimingComponent>();
 	if (TankAimingComponent)
 	{
 		AimingComponent = TankAimingComponent;
@@ -29,14 +29,9 @@ void ATankPlayerController::Tick(float DeltaSeconds)
 	AimTowardsCrosshair();
 }
 
-ATank* ATankPlayerController::GetControlledTank() const
-{
-	return Cast<ATank>(GetPawn());
-}
-
 void ATankPlayerController::AimTowardsCrosshair()
 {
-	if (!ensure(GetControlledTank())) { return; }
+	if (!ensure(Cast<ATank>(GetPawn()))) { return; }
 
 	FVector HitLocation;
 	if (GetSightRayHitLocation(HitLocation) && ensure(AimingComponent)) // This method will perform a line trace.

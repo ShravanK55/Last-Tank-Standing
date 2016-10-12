@@ -60,9 +60,14 @@ private:
 
 	double LastFireTime = 0.0f;
 
+	FVector CurrentAimDirection = FVector();
+
 	UTankBarrel* TankBarrel = nullptr;
 	UTankTurret* TankTurret = nullptr;
 
 	// Moves the barrel in the required aim direction.
 	void MoveBarrel(FVector AimDirection);
+
+	// Checks if the barrel is still moving.
+	bool IsBarrelMoving() const;
 };
