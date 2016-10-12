@@ -20,12 +20,17 @@ public:
 	void SetThrottle(float Throttle);
 
 private:
+	float CurrentThrottle = 0.0f;
+
 	// Sets default values for this component's properties
 	UTankTrack();
 
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	void DriveTrack();
+	void ApplySidewaysForce();
+
+	UFUNCTION(BlueprintCallable, Category = "Events")
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };
