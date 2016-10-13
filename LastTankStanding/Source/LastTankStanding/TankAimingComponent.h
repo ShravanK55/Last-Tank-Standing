@@ -32,6 +32,8 @@ public:
 	
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
+	
+	EFiringStatus GetFiringStatus() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void Initialize(UTankBarrel* Barrel, UTankTurret* Turret);

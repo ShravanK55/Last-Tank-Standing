@@ -18,9 +18,10 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 
+protected:
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float AcceptanceRadius = 8000.0f;
+
 private:
 	UTankAimingComponent* AimingComponent = nullptr;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Setup")
-	float AcceptanceRadius = 3000.0f;
 };
