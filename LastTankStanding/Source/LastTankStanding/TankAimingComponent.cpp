@@ -21,6 +21,7 @@ void UTankAimingComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	AmmoCount = StartingAmmoCount;
 	LastFireTime = FPlatformTime::Seconds();
 }
 
@@ -29,7 +30,11 @@ void UTankAimingComponent::TickComponent( float DeltaTime, ELevelTick TickType, 
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
-	if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeSecs)
+	if (AmmoCount == 0)
+	{
+		FiringStatus = EFiringStatus::Empty;
+	}
+	else if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeSecs)
 	{
 		FiringStatus = EFiringStatus::Reloading;
 	}
@@ -88,7 +93,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 
 void UTankAimingComponent::Fire()
 {
-	if (FiringStatus != EFiringStatus::Reloading)
+	if (FiringStatus != EFiringStatus::Reloading && FiringStatus != EFiringStatus::Empty)
 	{
 		AProjectile* SpawnedProjectile = GetWorld()->SpawnActor<AProjectile>(
 											ProjectileBlueprint,
@@ -96,6 +101,8 @@ void UTankAimingComponent::Fire()
 											TankBarrel->GetSocketRotation("Projectile")
 										 );
 		SpawnedProjectile->LaunchProjectile(ProjectileSpeed);
+		if (AmmoCount > 0)
+			AmmoCount--;
 		LastFireTime = FPlatformTime::Seconds();
 	}
 }
