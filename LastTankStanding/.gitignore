@@ -1,4 +1,6 @@
 *.VC.db
+Content/UI/Firing_M1A1_tank_in_Djibouti.uasset
+LastTankStanding/Content/UI/Outrun_future.uasset
 
 # Visual Studio 2015 user specific files
 .vs/
