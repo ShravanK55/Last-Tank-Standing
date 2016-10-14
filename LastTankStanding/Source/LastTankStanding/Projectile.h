@@ -13,10 +13,15 @@ class LASTTANKSTANDING_API AProjectile : public AActor
 public:
 	void LaunchProjectile(float Speed);
 
-protected:
-	UProjectileMovementComponent* ProjectileMovementComponent = nullptr;
+private:
+	UPROPERTY(VisibleAnywhere, Category = "Collision")
+	UStaticMeshComponent* CollisionMesh = nullptr;
 
-private:	
+	UPROPERTY(VisibleAnywhere, Category = "Visuals")
+	UParticleSystemComponent* LaunchBlast = nullptr;
+
+	UProjectileMovementComponent* MovementComponent = nullptr;
+
 	// Sets default values for this actor's properties
 	AProjectile();
 

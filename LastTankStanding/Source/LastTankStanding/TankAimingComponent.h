@@ -52,14 +52,14 @@ protected:
 	EFiringStatus FiringStatus = EFiringStatus::Reloading;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Ammunition")
-	int AmmoCount = 0;
+	int32 AmmoCount = 0;
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
-	int StartingAmmoCount = 3;
+	int32 StartingAmmoCount = 3;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float ProjectileSpeed = 100000.0f;
