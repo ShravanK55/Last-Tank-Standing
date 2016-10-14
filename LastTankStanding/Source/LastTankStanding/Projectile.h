@@ -20,6 +20,9 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Visuals")
 	UParticleSystemComponent* LaunchBlast = nullptr;
 
+	UPROPERTY(VisibleAnywhere, Category = "Visuals")
+	UParticleSystemComponent* ImpactBlast = nullptr;
+
 	UProjectileMovementComponent* MovementComponent = nullptr;
 
 	// Sets default values for this actor's properties
@@ -30,4 +33,7 @@ private:
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
+
+	UFUNCTION(BlueprintCallable, Category = "Events")
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };
