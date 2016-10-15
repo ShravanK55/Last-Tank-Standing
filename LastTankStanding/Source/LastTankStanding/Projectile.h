@@ -23,6 +23,9 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Visuals")
 	UParticleSystemComponent* ImpactBlast = nullptr;
 
+	UPROPERTY(VisibleAnywhere, Category = "Physics")
+	URadialForceComponent* ExplosionForce = nullptr;
+
 	UProjectileMovementComponent* MovementComponent = nullptr;
 
 	// Sets default values for this actor's properties

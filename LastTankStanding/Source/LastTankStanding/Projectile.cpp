@@ -22,6 +22,9 @@ AProjectile::AProjectile()
 	ImpactBlast->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	ImpactBlast->bAutoActivate = false;
 
+	ExplosionForce = CreateDefaultSubobject<URadialForceComponent>(FName("Explosion Force"));
+	ExplosionForce->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+
 	MovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Movement Component"));
 	MovementComponent->bAutoActivate = false;
 }
@@ -50,5 +53,5 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 {
 	LaunchBlast->Deactivate();
 	ImpactBlast->Activate();
-	CollisionMesh->SetVisibility(false);
+	ExplosionForce->FireImpulse();
 }
