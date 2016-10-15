@@ -26,6 +26,9 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
 	URadialForceComponent* ExplosionForce = nullptr;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
+	float DestroyDelay = 1.0f;
+
 	UProjectileMovementComponent* MovementComponent = nullptr;
 
 	// Sets default values for this actor's properties
@@ -39,4 +42,6 @@ private:
 
 	UFUNCTION(BlueprintCallable, Category = "Events")
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+
+	void OnTimerExpire();
 };
