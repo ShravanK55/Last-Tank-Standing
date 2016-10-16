@@ -15,6 +15,8 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
+
+	CurrentHealth = StartingHealth;
 }
 
 // Called to bind functionality to input

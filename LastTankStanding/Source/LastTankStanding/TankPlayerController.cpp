@@ -92,5 +92,5 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector& HitLocation, FVect
 
 void ATankPlayerController::OnDeath()
 {
-	UE_LOG(LogTemp, Warning, TEXT("%s died!"), *GetPawn()->GetName())
+	StartSpectatingOnly();
 }

@@ -54,5 +54,5 @@ void ATankAIController::Tick(float DeltaSeconds)
 
 void ATankAIController::OnDeath()
 {
-	UE_LOG(LogTemp, Warning, TEXT("%s died!"), *GetPawn()->GetName())
+	GetPawn()->DetachFromControllerPendingDestroy();
 }
