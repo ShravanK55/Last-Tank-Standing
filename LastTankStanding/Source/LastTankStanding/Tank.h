@@ -5,6 +5,7 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDeathEvent);
 
 UCLASS()
 class LASTTANKSTANDING_API ATank : public APawn
@@ -16,6 +17,8 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Health")
 	float GetHealthPercent() const;
+
+	FDeathEvent DeathEvent;
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")

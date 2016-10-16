@@ -21,6 +21,19 @@ void ATankAIController::BeginPlay()
 	}
 }
 
+void ATankAIController::SetPawn(APawn* InPawn)
+{
+	Super::SetPawn(InPawn);
+
+	if (InPawn)
+	{
+		ATank* PossessedTank = Cast<ATank>(InPawn);
+		if (!ensure(PossessedTank)) { return; }
+
+		PossessedTank->DeathEvent.AddUniqueDynamic(this, &ATankAIController::OnDeath);
+	}
+}
+
 void ATankAIController::Tick(float DeltaSeconds)
 {
 	ATank* ControlledTank = Cast<ATank>(GetPawn());
@@ -37,4 +50,9 @@ void ATankAIController::Tick(float DeltaSeconds)
 			AimingComponent->Fire();
 		}
 	}
+}
+
+void ATankAIController::OnDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("%s died!"), *GetPawn()->GetName())
 }

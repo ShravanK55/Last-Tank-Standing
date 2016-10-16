@@ -20,11 +20,18 @@ void ATankPlayerController::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Aiming component is still not created in the tank!"))
 	}
+}
 
-	ATank* ControlledTank = Cast<ATank>(GetPawn());
-	if (ControlledTank)
+void ATankPlayerController::SetPawn(APawn* InPawn)
+{
+	Super::SetPawn(InPawn);
+
+	if (InPawn)
 	{
-		FoundControlledTank(ControlledTank);
+		ATank* PossessedTank = Cast<ATank>(InPawn);
+		if (!ensure(PossessedTank)) { return; }
+
+		PossessedTank->DeathEvent.AddUniqueDynamic(this, &ATankPlayerController::OnDeath);
 	}
 }
 
@@ -81,4 +88,9 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector& HitLocation, FVect
 
 	HitLocation = FVector(0.0f);
 	return false;
+}
+
+void ATankPlayerController::OnDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("%s died!"), *GetPawn()->GetName())
 }

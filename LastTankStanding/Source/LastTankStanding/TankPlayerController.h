@@ -24,16 +24,19 @@ public:
 	float LineTraceRange = 1000000.0f;
 
 	virtual void BeginPlay() override;
+
+	virtual void SetPawn(APawn* InPawn) override;
+
 	virtual void Tick(float DeltaSeconds) override;
 
 	void AimTowardsCrosshair();
 
+	UFUNCTION()
+	void OnDeath();
+
 protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 	void FoundAimingComponent(UTankAimingComponent* AimingCompRef);
-
-	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
-	void FoundControlledTank(ATank* TankRef);
 
 private:
 	UTankAimingComponent* AimingComponent = nullptr;

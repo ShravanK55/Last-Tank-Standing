@@ -34,5 +34,11 @@ float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEve
 	int32 IntDamage = FPlatformMath::RoundToInt(Damage);
 	int32 DamageToApply = FMath::Clamp<int32>(IntDamage, 0, CurrentHealth);
 	CurrentHealth -= DamageToApply;
+
+	if (CurrentHealth <= 0)
+	{
+		DeathEvent.Broadcast();
+	}
+
 	return DamageToApply;
 }
