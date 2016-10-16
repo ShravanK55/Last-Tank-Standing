@@ -20,6 +20,12 @@ void ATankPlayerController::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Aiming component is still not created in the tank!"))
 	}
+
+	ATank* ControlledTank = Cast<ATank>(GetPawn());
+	if (ControlledTank)
+	{
+		FoundControlledTank(ControlledTank);
+	}
 }
 
 void ATankPlayerController::Tick(float DeltaSeconds)

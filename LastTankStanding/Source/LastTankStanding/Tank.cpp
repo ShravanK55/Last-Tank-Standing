@@ -22,3 +22,17 @@ void ATank::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 }
+
+float ATank::GetHealthPercent() const
+{
+	return (float)CurrentHealth / (float)StartingHealth;
+}
+
+float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
+{
+	float Damage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	int32 IntDamage = FPlatformMath::RoundToInt(Damage);
+	int32 DamageToApply = FMath::Clamp<int32>(IntDamage, 0, CurrentHealth);
+	CurrentHealth -= DamageToApply;
+	return DamageToApply;
+}

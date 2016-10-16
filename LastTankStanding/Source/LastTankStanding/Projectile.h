@@ -29,6 +29,9 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
 	float DestroyDelay = 1.0f;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Gameplay")
+	float ProjectileDamage = 20.0f;
+
 	UProjectileMovementComponent* MovementComponent = nullptr;
 
 	// Sets default values for this actor's properties
