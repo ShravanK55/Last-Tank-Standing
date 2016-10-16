@@ -54,5 +54,8 @@ void ATankAIController::Tick(float DeltaSeconds)
 
 void ATankAIController::OnDeath()
 {
-	GetPawn()->DetachFromControllerPendingDestroy();
+	if (GetPawn())
+	{
+		GetPawn()->DetachFromControllerPendingDestroy();
+	}
 }

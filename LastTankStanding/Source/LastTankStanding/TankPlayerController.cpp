@@ -44,7 +44,7 @@ void ATankPlayerController::Tick(float DeltaSeconds)
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
-	if (!ensure(Cast<ATank>(GetPawn()))) { return; }
+	if (!Cast<ATank>(GetPawn())) { return; }
 
 	FVector HitLocation;
 	if (GetSightRayHitLocation(HitLocation) && ensure(AimingComponent)) // This method will perform a line trace.
@@ -92,5 +92,8 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector& HitLocation, FVect
 
 void ATankPlayerController::OnDeath()
 {
-	StartSpectatingOnly();
+	if (GetPawn())
+	{
+		StartSpectatingOnly();
+	}
 }
