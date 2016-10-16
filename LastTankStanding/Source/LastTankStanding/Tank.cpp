@@ -32,8 +32,7 @@ float ATank::GetHealthPercent() const
 
 float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
 {
-	float Damage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-	int32 IntDamage = FPlatformMath::RoundToInt(Damage);
+	int32 IntDamage = FPlatformMath::RoundToInt(DamageAmount);
 	int32 DamageToApply = FMath::Clamp<int32>(IntDamage, 0, CurrentHealth);
 	CurrentHealth -= DamageToApply;
 
